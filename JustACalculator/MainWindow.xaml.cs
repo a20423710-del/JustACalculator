@@ -12,12 +12,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Globalization;
-using System.Windows.Data;
 
 namespace JustACalculator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// This Calculator was made without packages like DynamicEspresso.Core.
+    /// It works via mouse and keyboard.
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
@@ -37,13 +37,6 @@ namespace JustACalculator
 
 
             }
-        }
-
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Lösche alles
-            // no-op: ensure context alignment
-            DisplayText = string.Empty;
         }
 
         private void ClearEntryButton_Click(object sender, RoutedEventArgs e)
@@ -189,51 +182,6 @@ namespace JustACalculator
             }
         }
 
-        private void Button1_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button1.Content?.ToString());
-        }
-
-        private void Button2_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button2.Content?.ToString());
-        }
-
-        private void Button3_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button3.Content?.ToString());
-        }
-
-        private void Button4_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button4.Content?.ToString());
-        }
-
-        private void Button5_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button5.Content?.ToString());
-        }
-
-        private void Button6_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button6.Content?.ToString());
-        }
-
-        private void Button7_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button7.Content?.ToString());
-        }
-
-        private void Button8_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button8.Content?.ToString());
-        }
-
-        private void Button9_Click(object sender, RoutedEventArgs e)
-        {
-            HandleInput(Button9.Content?.ToString());
-        }
-
         private void PlusButton_Click(object sender, RoutedEventArgs e)
         {
             HandleInput(PlusButton.Content?.ToString());
@@ -340,36 +288,6 @@ namespace JustACalculator
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
-    // Converter to return the maximum of two numeric values (used to equalize button heights)
-    public class MaxDoubleConverter : IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-        {
-            double max = 0.0;
-            foreach (var v in values)
-            {
-                if (v == null) continue;
-                if (v is double d)
-                {
-                    if (d > max) max = d;
-                }
-                else
-                {
-                    if (double.TryParse(v.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var parsed))
-                    {
-                        if (parsed > max) max = parsed;
-                    }
-                }
-            }
-            return max;
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
         }
     }
 }
