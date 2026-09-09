@@ -33,9 +33,6 @@ namespace JustACalculator
                     _displayText = value;
                     OnPropertyChanged(nameof(DisplayText));
                 }
-
-
-
             }
         }
 
